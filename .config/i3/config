@@ -1,0 +1,138 @@
+#   __     __        _               _         
+#   \ \   / /__  ___| |_ ___  _ __  | |    ___ 
+#    \ \ / / _ \/ __| __/ _ \| '__| | |   / _ \
+#     \ V /  __/ (__| || (_) | |    | |__|  __/
+#      \_/ \___|\___|\__\___/|_|    |_____\___|
+#
+#   Check out my website at https://vectorle.xyz
+
+# ========== Welcome to my i3 config ==========
+
+# ----- Basic defs -----
+for_window [class="^.*"] border pixel 1
+gaps inner 15
+gaps outer 15
+set $mod Mod4
+set $term i3-sensible-terminal 
+
+# ----- Colors -----
+set $grey1  #494949
+set $grey2  #2d2d2d
+set $grey3  #1d2021
+set $white  #c4c4c4
+set $yellow #ffa800
+
+# ----- Status bar from ~/.config/i3status/config -----
+bar {
+	font pango: mono 13
+	status_command i3status
+    position top
+	mode dock
+   
+    colors {
+        separator   $grey1
+        background  $grey3
+        statusline  $white
+        
+        # class             border    bg         text
+        focused_workspace   $grey1    $yellow    $grey3
+        inactive_workspace  $grey2    $grey3     $white
+    }
+}
+
+# ----- Keybindings -----
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+
+# open programs
+bindsym $mod+Shift+f exec $BROWSER    # firefox
+bindsym $mod+i exec $term -e htop     # htop
+bindsym $mod+o exec $term -e ranger   # ranger
+bindsym $mod+n exec $term -e newsboat # newsboat
+
+# toggle redshift
+bindsym $mod+Shift+n exec redshift
+
+# take screenshot
+bindsym --release $mod+p exec $SCRIPTS/screenshot
+bindsym --release $mod+Shift+p exec $SCRIPTS/screenshot_save
+
+# change gap size
+bindsym $mod+s gaps inner current plus 5
+bindsym $mod+Shift+s gaps inner current minus 5
+bindsym $mod+Shift+d gaps inner current set 15; gaps outer current set 15 
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split orientation
+bindsym $mod+slash split vertical
+bindsym $mod+apostrophe split horizontal
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# ----- Floating Windows -----
+bindsym $mod+Shift+space floating toggle 
+bindsym $mod+space focus mode_toggle    
+
+# ----- Workspaces -----
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# ----- Resize -----
+bindsym $mod+Shift+y resize shrink width 10 px or 10 ppt  
+bindsym $mod+Shift+u resize grow height 10 px or 10 ppt   
+bindsym $mod+Shift+i resize shrink height 10 px or 10 ppt 
+bindsym $mod+Shift+o resize grow width 10 px or 10 ppt    
+
+# ----- Caps -----
+mode "caps" {
+    bindsym Caps_Lock mode "default"
+}
+bindsym Caps_Lock mode "caps"
+
+# ----- Function keys -----
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% # inc vol
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% # dec vol
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle       # mute
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10                           # inc brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10                         # dec brightness
+
+# ----- ----- ----- ----- -----
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves layout/session and updates i3)
+bindsym $mod+Shift+r restart
+# exit i3 (log out session)
+bindsym $mod+Shift+Escape exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b '     Exit i3     ' 'i3-msg exit'"
