@@ -45,10 +45,10 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 
 # open programs
-bindsym $mod+Shift+f exec $BROWSER    # firefox
-bindsym $mod+i exec $term -e htop     # htop
-bindsym $mod+o exec $term -e ranger   # ranger
-bindsym $mod+n exec $term -e newsboat # newsboat
+bindsym $mod+Shift+f exec $BROWSER
+bindsym $mod+i exec $term -e htop
+bindsym $mod+o exec $term -e $FILE
+bindsym $mod+n exec $term -e newsboat 
 
 # toggle redshift
 bindsym $mod+Shift+n exec redshift
@@ -116,18 +116,13 @@ bindsym $mod+Shift+u resize grow height 10 px or 10 ppt
 bindsym $mod+Shift+i resize shrink height 10 px or 10 ppt 
 bindsym $mod+Shift+o resize grow width 10 px or 10 ppt    
 
-# ----- Caps -----
-mode "caps" {
-    bindsym Caps_Lock mode "default"
-}
-bindsym Caps_Lock mode "caps"
-
 # ----- Function keys -----
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% # inc vol
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% # dec vol
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle       # mute
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10                           # inc brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10                         # dec brightness
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle       
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10                           
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10                         
+bindsym Shift+XF86MonBrightnessUp exec xbacklight -set 100                           
 
 # ----- ----- ----- ----- -----
 # reload the configuration file
