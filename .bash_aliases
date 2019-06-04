@@ -10,6 +10,7 @@
 
 alias clr="clear" \
       h="cd ~ && clr" \
+      u="sudo apt-get update" \
       v="$EDITOR" \
       f="$BROWSER" \
       i3c="$EDITOR ~/.config/i3/config" \
