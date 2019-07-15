@@ -1,20 +1,11 @@
 #!/bin/sh
-
-#   __     __        _               _         
-#   \ \   / /__  ___| |_ ___  _ __  | |    ___ 
-#    \ \ / / _ \/ __| __/ _ \| '__| | |   / _ \
-#     \ V /  __/ (__| || (_) | |    | |__|  __/
-#      \_/ \___|\___|\__\___/|_|    |_____\___|
-#
-#   Check out my website at https://vectorle.xyz
-
 alias clr="clear" \
       h="cd ~ && clr" \
       u="sudo apt-get update" \
       v="$EDITOR" \
       f="$BROWSER" \
       i3c="$EDITOR ~/.config/i3/config" \
-      i3sc="$EDITOR ~/.config/i3status/config" \
+      i3b="$EDITOR ~/.config/i3blocks/config" \
       brc="$EDITOR ~/.bashrc" \
       brca="$EDITOR ~/.bash_aliases" \
       g="git" \
@@ -31,4 +22,4 @@ alias clr="clear" \
       grep="grep --color=auto" \
       mkd="mkdir -pv" \
       rmf="rm -rf" \
-      rr="curl -s -L http://bit.ly/10hA8iC | bash"
+
