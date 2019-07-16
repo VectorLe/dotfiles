@@ -7,9 +7,14 @@ interval=10
 color=#50C878
 
 [weather]
-label=
+label= 
 interval=600
 color=#c6948b
+
+[temp]
+label= 
+interval=10
+color=#d33682
 
 [battery]
 label= 
