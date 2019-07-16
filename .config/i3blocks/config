@@ -9,7 +9,7 @@ color=#50C878
 [weather]
 label=
 interval=10800
-color=#af837b
+color=#c6948b
 
 [battery]
 label= 
