@@ -1,2 +1,2 @@
 # dotfiles
-![i3blocks](img/i3blocks_statusbar.png)
+![i3blocks](img/pic.png)
