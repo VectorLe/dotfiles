@@ -31,7 +31,7 @@ elsif ($acpi !~ /: ([\w\s]+), (\d+)%/) {
 }
 
 $percent = $2;
-$full_text = "$label$percent%";
+$full_text = "$label Bat: $percent%";
 
 open (AC_ADAPTER, "acpi -a |") or die;
 $ac_adapt = <AC_ADAPTER>;
