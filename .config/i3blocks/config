@@ -15,7 +15,7 @@ color=#c6948b
 label= 
 command=~/.config/i3blocks/i3cmds/$BLOCK_NAME BAT0
 interval=30
-color=#1690c9
+color=#0090ff
 
 [volume]
 label=  Vol:
