@@ -1,57 +1,84 @@
-# ----- Basic defs -----
-for_window [class="^.*"] border pixel 1
-gaps inner 15
-gaps outer 15
+# For complete reference visit http://i3wm.org/docs/userguide.html 
+
+#=============== Config ===============
 set $mod Mod4
 set $term i3-sensible-terminal 
+exec redshift
 
-# ----- Colors -----
-set $grey1  #494949
-set $grey2  #2d2d2d
-set $grey3  #1d2021
-set $white  #c4c4c4
-set $yellow #ffa800
-
-# ----- Status bar from ~/.config/i3blocks/config -----
+#=============== Status bar ===============
 bar {
-	font pango: mono 14
+	font pango: mono 13
 	status_command i3blocks
+    strip_workspace_numbers yes
     position top
 	mode dock
    
     colors {
-        separator   $grey1
-        background  $grey3
-        statusline  $white
+        separator   #494949
+        background  #1d2021
+        statusline  #c4c4c4
         
-        # class             border    bg         text
-        focused_workspace   $grey1    $yellow    $grey3
-        inactive_workspace  $grey2    $grey3     $white
+        # class             border     bg         text
+        focused_workspace   #494949    #ffa800    #1d2021
+        inactive_workspace  #2d2d2d    #1d2021    #c4c4c4
     }
 }
 
-# ----- Keybindings -----
-bindsym $mod+Return exec $term
-bindsym $mod+Shift+q kill
-
-# open programs
-bindsym $mod+Shift+f exec $BROWSER
-bindsym $mod+i exec $term -e htop
-bindsym $mod+o exec $term -e $FILE
-bindsym $mod+n exec $term -e newsboat 
-
-# toggle redshift
+#=============== Display ===============
+for_window [class="^.*"] border pixel 1
+gaps inner 15
+gaps outer 15
 bindsym $mod+Shift+n exec redshift
 
-# take screenshot
-bindsym --release $mod+p exec $SCRIPTS/screenshot
-bindsym --release $mod+Shift+p exec $SCRIPTS/screenshot_save
-
 # change gap size
-bindsym $mod+s gaps inner current plus 5
+bindsym $mod+s       gaps inner current plus 5
 bindsym $mod+Shift+s gaps inner current minus 5
-bindsym $mod+Shift+d gaps inner current set 15; gaps outer current set 15 
+bindsym $mod+Shift+x gaps inner current set 15; gaps outer current set 15 
 
+# resize
+bindsym $mod+Shift+y resize shrink width  10 px or 10 ppt  
+bindsym $mod+Shift+u resize grow   height 10 px or 10 ppt   
+bindsym $mod+Shift+i resize shrink height 10 px or 10 ppt 
+bindsym $mod+Shift+o resize grow   width  10 px or 10 ppt    
+
+#=============== Workspaces ===============
+# variables
+set $ws1 "1:I"
+set $ws2 "2:II"
+set $ws3 "3:III"
+set $ws4 "4:IV"
+set $ws5 "5:V"
+set $ws6 "6:VI"
+set $ws7 "7:VII"
+set $ws8 "8:VIII"
+set $ws9 "9:IX"
+set $ws10 "10:X"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+#=============== Windows ===============
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -65,56 +92,40 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # split orientation
-bindsym $mod+slash split vertical
+bindsym $mod+slash      split vertical
 bindsym $mod+apostrophe split horizontal
 
-# enter fullscreen mode for the focused container
+# fullscreen for focused container
 bindsym $mod+f fullscreen toggle
 
-# ----- Floating Windows -----
+# floating windows
 bindsym $mod+Shift+space floating toggle 
-bindsym $mod+space focus mode_toggle    
+bindsym $mod+space       focus mode_toggle    
 
-# ----- Workspaces -----
-# switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+#=============== Keybindings ===============
+bindsym $mod+Return  exec $term
+bindsym $mod+Shift+q kill
 
-# move focused window to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+# open programs
+bindsym $mod+Shift+f exec firefox 
+bindsym $mod+i       exec $term -e htop
+bindsym $mod+o       exec $term -e $FILE
+bindsym $mod+n       exec $term -e newsboat 
 
-# ----- Resize -----
-bindsym $mod+Shift+y resize shrink width 10 px or 10 ppt  
-bindsym $mod+Shift+u resize grow height 10 px or 10 ppt   
-bindsym $mod+Shift+i resize shrink height 10 px or 10 ppt 
-bindsym $mod+Shift+o resize grow width 10 px or 10 ppt    
+# take screenshot
+bindsym --release $mod+p       exec $SCRIPTS/screenshot
+bindsym --release $mod+Shift+p exec $SCRIPTS/screenshot_save
 
-# ----- Function keys -----
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+; exec pkill - RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%-; exec pkill - RTMIN+10 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle; exec pkill -     RTMIN+10 i3blocks
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10                           
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10                         
-bindsym Shift+XF86MonBrightnessUp exec xbacklight -set 100                           
+#=============== Function keys ===============
+bindsym XF86AudioRaiseVolume        exec amixer -q -D pulse sset Master 5%+;    exec pkill -RTMIN+10 i3blocks 
+bindsym XF86AudioLowerVolume        exec amixer -q -D pulse sset Master 5%-;    exec pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute               exec amixer -q -D pulse sset Master toggle; exec pkill -RTMIN+10 i3blocks
+bindsym XF86MonBrightnessUp         exec xbacklight -inc 10                           
+bindsym XF86MonBrightnessDown       exec xbacklight -dec 10                         
+bindsym Shift+XF86MonBrightnessUp   exec xbacklight -set 100                           
+bindsym Shift+XF86MonBrightnessDown exec xbacklight -set 0
 
-# ----- ----- ----- ----- -----
+#=============== =============== =============== =============== ===============
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves layout/session and updates i3)
