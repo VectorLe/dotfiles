@@ -13,7 +13,7 @@ color=#c6948b
 
 [battery]
 label= 
-command=~/.config/i3blocks/i3cmds/$BLOCK_NAME BAT0
+command=~/.config/i3blocks/i3cmds/$BLOCK_NAME
 interval=1
 color=#0090ff
 

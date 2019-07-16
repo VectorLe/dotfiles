@@ -11,13 +11,11 @@ use utf8;
 my $acpi;
 my $percent;
 my $ac_adapt;
-my $full_text;
-my $short_text;
-my $bat_number = $ENV{BAT_NUMBER} || 0;
-my $label = $ENV{LABEL};
+my $status;
+my $format;
 
 # read the first line of the "acpi" command output
-open (ACPI, "acpi -b 2>/dev/null| grep 'Battery $bat_number' |") or die;
+open (ACPI, "acpi -b 2>/dev/null| grep 'Battery 0' |") or die;
 $acpi = <ACPI>;
 close(ACPI);
 
@@ -30,48 +28,35 @@ elsif ($acpi !~ /: ([\w\s]+), (\d+)%/) {
 	die "$acpi\n";
 }
 
-$percent = $2;
-$full_text = "$label Bat: $percent%";
-
 open (AC_ADAPTER, "acpi -a |") or die;
 $ac_adapt = <AC_ADAPTER>;
 close(AC_ADAPTER);
 
+# get the percentage
+$percent = $2;
+if ($percent == 99) {$percent = 100;}
+
+# determine status
 if ($ac_adapt =~ /: ([\w-]+)/) {
     $ac_adapt = $1;
 
-    if ($ac_adapt eq 'on-line') {
-        $full_text .= ' CHR ';
+    if ($percent == 100 && $ac_adapt eq 'on-line') {
+        $status = 'FULL '
+    } elsif ($ac_adapt eq 'on-line') {
+        $status = 'CHR ';
     } elsif ($ac_adapt eq 'off-line') {
-        $full_text .= ' BAT ';
+        $status = 'BAT ';
     }
 }
 
-$short_text = $full_text;
+$format = " Bat: $percent% $status";
 
+# time remaining
 if ($acpi =~ /(\d\d:\d\d):/) {
-	$full_text .= " ($1)";
+	$format .= " ($1)";
 }
 
 # print text
-print "$full_text\n";
-print "$short_text\n";
-
-# consider color and urgent flag only on discharge
-if ($ac_adapt eq 'off-line') {
-	if ($percent < 20) {
-		print "#FF0000\n";
-	} elsif ($percent < 40) {
-		print "#FFAE00\n";
-	} elsif ($percent < 60) {
-		print "#FFF600\n";
-	} elsif ($percent < 85) {
-		print "#A8FF00\n";
-	}
-
-	if ($percent < 5) {
-		exit(33);
-	}
-}
+print "$format\n";
 
 exit(0);
