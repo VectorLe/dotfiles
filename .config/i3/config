@@ -10,11 +10,11 @@ set $term i3-sensible-terminal
 #   Status bar 
 #====================
 bar {
-	font pango: mono 13
-	status_command i3blocks
+    font pango: mono 13
+    status_command i3blocks
     strip_workspace_numbers yes
     position top
-	mode dock
+    mode dock
    
     colors {
         separator   #494949
