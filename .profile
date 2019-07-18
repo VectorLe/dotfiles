@@ -2,6 +2,7 @@
 # executed upon login
 
 export EDITOR="vim"
+export TERMINAL="st"
 export BROWSER="firefox"
 export SCRIPTS="$HOME/.scripts"
 
