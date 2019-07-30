@@ -1,36 +1,36 @@
 command=~/.config/i3blocks/i3cmds/$BLOCK_NAME
-separator_block_width=25
+separator_block_width=30
 
 [wifi]
 label=  WiFi
 interval=10
-color=#50C878
-
-[weather]
-label= 
-interval=600
-color=#c6948b
 
 [temp]
 label= 
-interval=10
-color=#d33682
+interval=1200
+color=#6e6cdd
 
 [battery]
 label= 
 command=~/.config/i3blocks/i3cmds/$BLOCK_NAME
-interval=1
-color=#0090ff
+interval=5
+color=#c390ca
 
 [volume]
 label=  Vol:
 interval=once
 signal=10
-color=#7f84e2
+color=#d56073
 
-[time]
+[date]
+label=
+command=date '+ %a %m/%d/%y'
+interval=18000
+color=#ec9e69
+
+[clock]
 label=
-command=date '+ %a %m/%d/%y %I:%M:%S %p'
-interval=1
-color=#e8ac17
+command=date '+ %I:%M:%S %p '
+interval=5
+color=#e5e56b
 

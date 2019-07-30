@@ -11,15 +11,23 @@ alias clr="clear" \
       g="git" \
       gac="g add . && g commit" \
       gp="git push" \
+      mc="make clean" \
+      smi="sudo make install" \
       img="sxiv" \
       pdf="zathura" \
       z="zathura" \
+      nf="neofetch" \
       pa="ffplay -loglevel quiet -showmode 1" \
-      pv="ffplay -loglevel quiet" \
+      pv="mpv" \
+      wall="feh --bg-scale" \
       :q="exit" \
       ls="ls -hN --group-directories-first --color=auto" \
       lsa="ls -A" \
       grep="grep --color=auto" \
       mkd="mkdir -pv" \
       rmf="rm -rf" \
+      up="sudo apt-get update && 
+          sudo apt-get upgrade && 
+          sudo apt-get autoclean && 
+          sudo apt-get autoremove" \
 

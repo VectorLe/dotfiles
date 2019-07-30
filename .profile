@@ -4,7 +4,12 @@
 export EDITOR="vim"
 export TERMINAL="st"
 export BROWSER="firefox"
+export FILE="ranger"
 export SCRIPTS="$HOME/.scripts"
+export WALLPAPERS="$HOME/media/pics/wallpapers"
+export MUSIC="$HOME/media/music"
+export VIDEOS="$HOME/media/vids"
+export PICTURES="$HOME/media/pics"
 
 # set .bashrc
 [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"

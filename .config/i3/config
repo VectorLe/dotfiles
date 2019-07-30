@@ -1,16 +1,16 @@
-# For complete reference visit http://i3wm.org/docs/userguide.html 
+# Please visit http://i3wm.org/docs/userguide.html for complete reference 
 
 #==================== 
 #   Config 
 #====================
-set $mod Mod4
-set $term i3-sensible-terminal 
+set $mod  Mod4
+set $term $TERMINAL
 
 #==================== 
 #   Status bar 
 #====================
 bar {
-    font pango: mono 13
+    font pango: mono 12
     status_command i3blocks
     strip_workspace_numbers yes
     position top
@@ -18,12 +18,12 @@ bar {
    
     colors {
         separator   #494949
-        background  #1d2021
+        background  #000000
         statusline  #c4c4c4
         
         # class             border     bg         text
-        focused_workspace   #494949    #ffa800    #1d2021
-        inactive_workspace  #2d2d2d    #1d2021    #c4c4c4
+        focused_workspace   #494949    #6a8df8    #1d2021
+        inactive_workspace  #494949    #000000    #c4c4c4
     }
 }
 
@@ -34,6 +34,7 @@ for_window [class="^.*"] border pixel 1
 gaps inner 15
 gaps outer 15
 bindsym $mod+Shift+n exec redshift
+bindsym $mod+w       exec $SCRIPTS/random_wallpaper 
 
 # change gap size
 bindsym $mod+s       gaps inner current plus 5
@@ -117,18 +118,19 @@ bindsym $mod+space       focus mode_toggle
 bindsym $mod+Return  exec $term
 bindsym $mod+Shift+q kill
 
-# startup scripts
-exec $SCRIPTS/startup_scripts/set_wallpaper 
-exec $SCRIPTS/startup_scripts/ioconfig      
-exec redshift                               
+# startup scripts 
+exec $SCRIPTS/ioconfig      
+exec compton
+exec redshift    
+exec $SCRIPTS/random_wallpaper 
 
 # open programs
-bindsym $mod+Shift+f exec firefox 
-bindsym $mod+Shift+m exec minecraft-launcher
-bindsym $mod+Shift+d exec discord
-bindsym $mod+i       exec $term -e htop
-bindsym $mod+o       exec $term -e $FILE
-bindsym $mod+n       exec $term -e newsboat 
+bindsym $mod+Shift+f exec --no-startup-id firefox 
+bindsym $mod+Shift+m exec --no-startup-id minecraft-launcher
+bindsym $mod+Shift+d exec --no-startup-id discord
+bindsym $mod+i       exec --no-startup-id $term -e htop
+bindsym $mod+o       exec --no-startup-id $term -e $FILE
+bindsym $mod+n       exec --no-startup-id $term -e newsboat 
 
 # take screenshot
 bindsym --release $mod+p       exec $SCRIPTS/screenshot
