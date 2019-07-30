@@ -28,15 +28,15 @@ if [[ "$(cat /sys/class/net/wlp3s0/operstate)" = 'down' ]]; then
 elif [[ "$(cat /sys/class/net/wlp3s0/operstate)" = 'up' ]]; then
     if [[ $QUALITY -ge 80 ]]; then
         echo "on" 
-        echo "#46eb96"
+        echo "#40c982"
     elif [[ $QUALITY -ge 60 ]]; then
         echo "on"
         echo "on" 
-        echo "#6eb709"
+        echo "#679bd3"
     elif [[ $QUALITY -ge 40 ]]; then
         echo "on $QUALITY%" 
         echo "on"
-        echo "#a5c600"
+        echo "#67c3d3"
     fi
 fi
 

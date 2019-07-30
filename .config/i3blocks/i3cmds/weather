@@ -1,1 +1,0 @@
-curl -Ss https://wttr.in?format="%C+%t" | xargs echo

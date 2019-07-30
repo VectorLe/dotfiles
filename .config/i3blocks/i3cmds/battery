@@ -15,7 +15,7 @@ my $status;
 my $format;
 
 # get battery info 
-open (ACPI, "acpi -b 2>/dev/null| grep 'Battery 0' |") or die;
+open (ACPI, "acpi -b | grep 'Battery 0' |");
 $acpi = <ACPI>;
 close(ACPI);
 
@@ -29,7 +29,7 @@ elsif ($acpi !~ /: ([\w\s]+), (\d+)%/) {
 }
 
 # get ac adapter info
-open (AC_ADAPTER, "acpi -a |") or die;
+open (AC_ADAPTER, "acpi -a |");
 $ac_adapt = <AC_ADAPTER>;
 close(AC_ADAPTER);
 
@@ -61,3 +61,4 @@ if ($acpi =~ /(\d\d:\d\d):/) {
 print "$format\n";
 
 exit(0);
+
