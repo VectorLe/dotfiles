@@ -27,6 +27,7 @@ if [[ "$(cat /sys/class/net/wlp3s0/operstate)" = 'down' ]]; then
 # WiFi On
 elif [[ "$(cat /sys/class/net/wlp3s0/operstate)" = 'up' ]]; then
     if [[ $QUALITY -ge 80 ]]; then
+        echo "on"
         echo "on" 
         echo "#40c982"
     elif [[ $QUALITY -ge 60 ]]; then

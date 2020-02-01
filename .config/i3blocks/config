@@ -31,6 +31,6 @@ color=#ec9e69
 [clock]
 label=
 command=date '+ %I:%M:%S %p '
-interval=5
+interval=1
 color=#e5e56b
 
