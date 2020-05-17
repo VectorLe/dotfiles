@@ -130,14 +130,13 @@ bindsym $mod+Shift+m exec --no-startup-id minecraft-launcher
 bindsym $mod+Shift+d exec --no-startup-id discord
 bindsym $mod+Shift+z exec --no-startup-id zoom
 bindsym $mod+m       exec --no-startup-id spotify
-bindsym $mod+a       exec --no-startup-id android
 bindsym $mod+i       exec --no-startup-id $term -e htop
 bindsym $mod+r       exec --no-startup-id $term -e $FILE
 bindsym $mod+n       exec --no-startup-id $term -e newsboat 
 
 # take screenshot
-bindsym --release $mod+p       exec $SCRIPTS/screenshot
-bindsym --release $mod+Shift+p exec $SCRIPTS/screenshot_save
+bindsym --release $mod+p       exec screenshot
+bindsym --release $mod+Shift+p exec screenshot_save
 
 #==================== 
 #   Function keys 
@@ -154,5 +153,5 @@ bindsym Shift+XF86MonBrightnessDown exec xbacklight -set 0
 # restart i3 inplace (preserves layout/session and updates i3)
 bindsym $mod+Shift+r restart
 # exit i3 (log out session)
-bindsym $mod+Shift+Escape exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+Escape exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Exit i3' 'i3-msg exit'"
 

@@ -1,1 +1,0 @@
-acpi -tf | awk '$4 {print $4 "°" "F"}'
