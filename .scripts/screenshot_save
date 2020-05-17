@@ -1,2 +1,0 @@
-#!/bin/sh
-scrot -s 'Screenshot_%Y-%m-%d_$p.png' -e 'xclip -t image/png -se c $f && mv $f ~/media/pics/screenshots'
