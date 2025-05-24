@@ -1,3 +1,3 @@
 # dotfiles
-![polybar](img/pic.png)
+![polybar](img/img.png)
 
