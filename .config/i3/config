@@ -1,0 +1,139 @@
+#==================== 
+#   Startup Script
+#==================== 
+exec --no-startup-id ~/.local/bin/startup-script
+
+#==================== 
+#   Config 
+#====================
+set $mod3 Mod3
+#set $mod  Mod4
+#client.focused  #2dbbaf #285577 #ffffff #d80462 #2dbbaf
+
+# Mod+Tab to cycle to next workspace and wrap around
+bindsym $mod3+Tab workspace next
+
+#==================== 
+#   Display 
+#====================
+for_window [class="^.*"] border pixel 0
+gaps inner 5
+gaps outer 0
+gaps top 45
+
+# change gap size
+#bindsym $mod3+s       gaps inner current plus 5
+#bindsym $mod3+Shift+s gaps inner current minus 5
+#bindsym $mod3+Shift+x gaps inner current set 15; gaps outer current set 15 
+
+# resize
+#bindsym $mod3+Shift+y resize shrink width  10 px or 10 ppt  
+#bindsym $mod3+Shift+u resize grow   height 10 px or 10 ppt   
+#bindsym $mod3+Shift+i resize shrink height 10 px or 10 ppt 
+#bindsym $mod3+Shift+o resize grow   width  10 px or 10 ppt    
+
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod3
+
+#==================== 
+#   Workspaces 
+#====================
+# variables
+set $ws1  "1:一"
+set $ws2  "2:二"
+set $ws3  "3:三"
+set $ws4  "4:四"
+set $ws5  "5:五"
+set $ws6  "6:六"
+set $ws7  "7:七"
+set $ws8  "8:八"
+set $ws9  "9:九"
+set $ws10 "10:十"
+
+# switch to workspace
+bindsym $mod3+1 workspace $ws1
+bindsym $mod3+2 workspace $ws2
+bindsym $mod3+3 workspace $ws3
+bindsym $mod3+4 workspace $ws4
+bindsym $mod3+5 workspace $ws5
+bindsym $mod3+6 workspace $ws6
+bindsym $mod3+7 workspace $ws7
+bindsym $mod3+8 workspace $ws8
+bindsym $mod3+9 workspace $ws9
+bindsym $mod3+0 workspace $ws10
+
+# move focused window to workspace
+bindsym $mod3+Shift+1 move container to workspace $ws1
+bindsym $mod3+Shift+2 move container to workspace $ws2
+bindsym $mod3+Shift+3 move container to workspace $ws3
+bindsym $mod3+Shift+4 move container to workspace $ws4
+bindsym $mod3+Shift+5 move container to workspace $ws5
+bindsym $mod3+Shift+6 move container to workspace $ws6
+bindsym $mod3+Shift+7 move container to workspace $ws7
+bindsym $mod3+Shift+8 move container to workspace $ws8
+bindsym $mod3+Shift+9 move container to workspace $ws9
+bindsym $mod3+Shift+0 move container to workspace $ws10
+
+#==================== 
+#   Windows 
+#====================
+# change focus
+bindsym $mod3+h focus left
+bindsym $mod3+j focus down
+bindsym $mod3+k focus up
+bindsym $mod3+l focus right
+
+# move focused window
+bindsym $mod3+Shift+h move left
+bindsym $mod3+Shift+j move down
+bindsym $mod3+Shift+k move up
+bindsym $mod3+Shift+l move right
+
+# split orientation
+bindsym $mod3+period split vertical
+bindsym $mod3+apostrophe split horizontal
+
+# fullscreen for focused container
+bindsym $mod3+f fullscreen toggle
+
+# floating windows
+bindsym $mod3+Shift+space floating toggle 
+bindsym $mod3+space       focus mode_toggle    
+
+#==================== 
+#   Keybindings 
+#====================
+bindsym $mod3+Return  exec $TERMINAL
+#bindsym $mod3+Shift+q kill
+bindsym $mod3+Shift+q exec xdotool getwindowfocus windowkill
+
+# open programs
+bindsym $mod3+Shift+f exec --no-startup-id firefox
+bindsym $mod3+Shift+d exec --no-startup-id flatpak run com.discordapp.Discord
+bindsym $mod3+r       exec --no-startup-id $term -e $FILE
+bindsym $mod3+d       exec --no-startup-id ~/.local/bin/display
+bindsym $mod3+Shift+s exec --no-startup-id simplescreenrecorder
+bindsym $mod3+Shift+m exec --no-startup-id minecraft-launcher 
+bindsym $mod3+e       exec --no-startup-id libreoffice
+bindsym $mod3+slash   exec --no-startup-id rofi -show drun -theme config 
+#bindsym $mod3+slash   exec --no-startup-id ~/.config/rofi/launchers/type-6/launcher.sh 
+bindsym $mod3+Escape  exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
+#bindsym $mod3+p       exec --no-startup-id ~/.local/bin/autohide-bar
+#bindsym $mod3+Shiftp  exec --no-startup-id pkill autohide-bar && ~/.config/polybar/launch.sh && i3-msg "gaps top all set 45" 
+
+# take screenshot
+bindsym $mod3+y	           exec --no-startup-id flameshot gui -c 
+bindsym $mod3+Shift+y      exec --no-startup-id flameshot gui -p ~/img/screenshots
+
+#==================== 
+#   Function keys 
+#====================
+bindsym XF86AudioRaiseVolume        exec amixer -q -D pulse sset Master 5%+; 
+bindsym XF86AudioLowerVolume        exec amixer -q -D pulse sset Master 5%-;
+bindsym XF86AudioMute               exec amixer -q -D pulse sset Master toggle;
+
+#==================== ==================== ==================== ====================
+# restart i3 inplace (preserves layout/session and updates i3)
+bindsym $mod3+Shift+r restart
+# exit i3 (log out session)
+bindsym $mod3+Shift+Escape exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Exit i3' 'i3-msg exit'"
